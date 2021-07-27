@@ -8,7 +8,7 @@ namespace PokemonAPI.Controllers
     [ApiController]
     public class PokemonController : Controller
     {
-        private IPokemonProvider _pokemonProvider;
+        private readonly IPokemonProvider _pokemonProvider;
 
         public PokemonController(IPokemonProvider pokemonProvider)
         {

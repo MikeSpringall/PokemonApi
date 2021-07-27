@@ -6,7 +6,7 @@ namespace PokemonAPI.Domain.Wrappers
 {
     public class HttpClientWrapper : IHttpClient
     {
-        private HttpClient _httpClient;
+        private readonly HttpClient _httpClient;
 
         public HttpClientWrapper(string baseUrl)
         {

@@ -90,8 +90,8 @@ namespace PokemonAPI.Tests.Unit.Mappers
         [TestMethod]
         public void Map_should_return_cleaned_description()
         {
-            var description = new List<(string Language, string Value)> { ("en", "pokemon\ndescription\fwith\rformatting\bnow\tremoved") };
-            var expectedDescription = "pokemon description with formatting now removed";
+            var description = new List<(string Language, string Value)> { ("en", "pokemon\ndescription\fwith\rformatting\bnow\tremoved  and double spaces") };
+            var expectedDescription = "pokemon description with formatting now removed and double spaces";
             var response = BuildJsonResponse("pokemonName", description, "pokemon habitat", true);
 
             var pokemon = PokemonMapper.Map(response);

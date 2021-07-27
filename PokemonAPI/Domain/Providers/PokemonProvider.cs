@@ -9,7 +9,6 @@ namespace PokemonAPI.Domain.Providers
     {
         private readonly IPokemonService _pokemonService;
         private readonly ITranslationService _translationService;
-        private readonly ILogger<PokemonProvider> _logger;
 
         public PokemonProvider(IPokemonService pokemonService, ITranslationService translationService)
         {

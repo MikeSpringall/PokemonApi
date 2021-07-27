@@ -37,7 +37,8 @@ namespace PokemonAPI.Domain.Mappers
                               .Replace("\f", " ")
                               .Replace("\n", " ")
                               .Replace("\r", " ")
-                              .Replace("\t", " ");
+                              .Replace("\t", " ")
+                              .Replace("  ", " ");
         }
     }
 }

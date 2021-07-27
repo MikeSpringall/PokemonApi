@@ -12,7 +12,7 @@ namespace PokemonAPI.Domain.Services
 {
     public class TranslationService : ITranslationService
     {
-        private IHttpClient _httpClient;
+        private readonly IHttpClient _httpClient;
         private readonly ILogger<TranslationService> _logger;
 
         public TranslationService(IHttpClient httpClient, ILogger<TranslationService> logger)
