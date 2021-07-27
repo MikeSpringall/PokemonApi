@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using PokemonAPI.Domain.Mappers;
 using PokemonAPI.Domain.Providers;
@@ -34,7 +35,11 @@ namespace PokemonAPI
                 var client = new HttpClientWrapper(Configuration["PokemonEndpointUrl"]);
                 return new PokemonService(client, ctx.GetService<IPokemonMapper>());
             });
-            services.AddScoped<ITranslationService, TranslationService>();
+            services.AddTransient<ITranslationService, TranslationService>((ctx) =>
+            {
+                var client = new HttpClientWrapper(Configuration["TranslationEndpointUrl"]);
+                return new TranslationService(client, ctx.GetService<ILogger<TranslationService>>());
+            });
             services.AddScoped<IPokemonProvider, PokemonProvider>();
         }
 
