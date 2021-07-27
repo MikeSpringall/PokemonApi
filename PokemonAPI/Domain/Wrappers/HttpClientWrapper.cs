@@ -6,14 +6,29 @@ namespace PokemonAPI.Domain.Wrappers
 {
     public class HttpClientWrapper : IHttpClient
     {
+        private HttpClient _httpClient;
+
+        public HttpClientWrapper(string baseUrl)
+        {
+            _httpClient = new HttpClient
+            {
+                BaseAddress = new Uri(baseUrl)
+            };
+        }
+
         public Task<HttpResponseMessage> GetAsync(string url)
         {
-            throw new NotImplementedException();
+            return _httpClient.GetAsync(url);
         }
 
         public Task<HttpResponseMessage> PostAsync(string url, FormUrlEncodedContent content)
         {
-            throw new NotImplementedException();
+            return _httpClient.PostAsync(url, content);
+        }
+
+        public void Dispose()
+        {
+            _httpClient?.Dispose();
         }
     }
 }

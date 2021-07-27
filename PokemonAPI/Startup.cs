@@ -29,8 +29,11 @@ namespace PokemonAPI
             });
 
             services.AddTransient<IPokemonMapper, PokemonMapper>();
-            services.AddScoped<IHttpClient, HttpClientWrapper>();
-            services.AddScoped<IPokemonService, PokemonService>();
+            services.AddTransient<IPokemonService, PokemonService>((ctx) =>
+            {
+                var client = new HttpClientWrapper(Configuration["PokemonEndpointUrl"]);
+                return new PokemonService(client, ctx.GetService<IPokemonMapper>());
+            });
             services.AddScoped<ITranslationService, TranslationService>();
             services.AddScoped<IPokemonProvider, PokemonProvider>();
         }
