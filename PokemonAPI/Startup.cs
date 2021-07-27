@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
+using PokemonAPI.Domain.Providers;
 
 namespace PokemonAPI
 {
@@ -19,12 +19,13 @@ namespace PokemonAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "PokemonAPI", Version = "v1" });
             });
+
+            services.AddScoped<IPokemonProvider, PokemonProvider>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
