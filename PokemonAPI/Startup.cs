@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using PokemonAPI.Domain.Providers;
+using PokemonAPI.Domain.Services;
 
 namespace PokemonAPI
 {
@@ -25,6 +26,8 @@ namespace PokemonAPI
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "PokemonAPI", Version = "v1" });
             });
 
+            services.AddScoped<IPokemonService, PokemonService>();
+            services.AddScoped<ITranslationService, TranslationService>();
             services.AddScoped<IPokemonProvider, PokemonProvider>();
         }
 
